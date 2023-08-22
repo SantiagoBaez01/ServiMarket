@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>SOLICITUD DE USUARIO</title>
+    <link rel="stylesheet" href="/css/Formulario_Servicios.css">
+</head>
+<body>
+<section class="form-login">
+<form  th:action="@{/solicitud/{pId} (pId=${pId})}" method="POST" th:object="${solicitud}" >
+
+
+    <h1>Inicia tu Solicitud</h1>
+    <label >Comentario:</label>
+
+    <textarea type="text"
+           id="comentario"
+           name="comentario"
+           th:field="*{comentario}"
+            required></textarea>
+
+    <button type="submit">Solicitar</button>
+</form>
+
+<div id="publicacionMostrada"></div>
+
+</section>
+<script src="js/Formulario_Servicios.js"></script>
+</body>
+</html>

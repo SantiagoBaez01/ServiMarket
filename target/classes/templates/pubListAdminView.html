@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main>
+    <div class="container">
+        <form th:action="@{/publist/search}" method="get" class="d-flex mt-3" role="search">
+            <input class="form-control me-2"
+                   type="search"
+                   placeholder="Ingrese lo que desea buscar"
+                   name="query"
+                   aria-label="Search">
+            <button class="btn btn-success" type="submit">Buscar</button>
+        </form>
+        <form th:action="@{/publist/rubro}" method="get" class="d-flex mt-3" role="search">
+
+            <select class="form-control me-2" id="rubro" name="rubro" >
+                <option value="">Seleccione un rubro</option>
+                <option th:each="rubro : ${T(com.grupob.ServiMarket.enums.Rubro).values()}"
+                        th:value="${rubro}" th:text="${rubro}"></option>
+            </select>
+            <button class="btn btn-success" type="submit">Filtrar</button>
+        </form>
+
+
+        <!-- En esta parte de abajo agregue los contenedores section que aparecen abajo de la pagina -->
+
+        <div class="publicaciones-container" >
+            <div th:if="${error != null}" class="alert alert-danger" role="alert" style="text-align: center;">
+                <p th:utext="${error}" style="text-align: center;"></p>
+            </div>
+
+            <div th:each="publication:${publication}" class="publicacion">
+                <div class="contenido-publicacion">
+                    <div th:if="${publication.image != null && publication.image.size() > 0}">
+                        <img  th:src="@{'/imagen/' + ${publication.image[0].id}}"  alt="Imagen publicacion" class="imagen-publicacion">
+                    </div>
+                    <h2 class="titulo-publicacion" th:text="${publication.title}"></h2>
+                    <p class="descripcion-publicacion"  th:text="${publication.description}"> </p>
+
+
+                </div>
+
+                <div>
+                    <a class="btn btn-outline-success" sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_PROVIDER')" th:href="@{/publication/{pubId}(pubId=${publication.id})}">Ver Servicio</a>
+                    <a class="btn btn-outline-success" sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/editPublication/{pId}(pId=${publication.id})}">Editar Servicio</a>
+
+
+                </div>
+
+            </div>
+
+
+            <!--Aca finaliza ese codigo de los contenedores -->
+
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/layout :: _footer"></footer>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

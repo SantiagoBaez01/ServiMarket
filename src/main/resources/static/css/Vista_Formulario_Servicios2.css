@@ -1,0 +1,615 @@
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    line-height: 1.4;
+    font-family: 'Bree Serif', serif;
+}
+
+header {
+    background-color: whitesmoke;
+    opacity: 90%;
+    
+}
+.reg {
+   
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+
+}
+
+.boton-volver {
+    text-align: right; /* Alinea el botón a la derecha */
+    margin-top: 1px; /* Agrega un margen superior para separar del contenido anterior */
+    
+    margin-bottom: 130px; /* Ajusta el margen inferior según lo deseado */
+}
+
+.boton-volver button {
+    background-color: #007bff; /* Cambia el color de fondo del botón */
+    color: #fff; /* Cambia el color del texto del botón */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.boton-volver button:hover {
+    background-color: #0056b3; /* Cambia el color de fondo del botón al hacer hover */
+}
+
+
+/* Estilos para la sección de imágenes */
+.seccion-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.seccion-imagen div {
+    margin: 0 5px;
+    transition: transform 0.5s, filter 0.5s;
+}
+
+.seccion-imagen img {
+    width: 300px; /* Tamaño original de la imagen */
+    height: auto;
+    object-fit: cover;
+    opacity: 0.8;
+    filter: contrast(100%); /* Filtro original de la imagen */
+}
+
+.seccion-imagen div:hover {
+    transform: scale(1.9); /* Tamaño aumentado al hacer hover */
+}
+
+.seccion-imagen div:hover img {
+    opacity: 1; /* Opacidad completa al hacer hover */
+    filter: contrast(120%); /* Ajuste del filtro al hacer hover */
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    color: #404040;
+    font-family: "Arial", Segoe UI, Tahoma, sans-serifl, Helvetica Neue, Helvetica;
+}
+
+/*=====================================
+estilos de la utilidad
+Copiar esto
+=====================================*/
+.seccion-perfil-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seccion-perfil-usuario .perfil-usuario-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#B873FF, transparent);
+    margin-bottom: 1.25rem;
+}
+
+.seccion-perfil-usuario .perfil-usuario-portada {
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 17rem;
+    background-image: linear-gradient(45deg, #BC3CFF, #317FFF);
+    border-radius: 0 0 20px 20px;
+    /*
+    background-image: url('http://localhost/multimedia/png/user-portada-3.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    */
+}
+
+.seccion-perfil-usuario .perfil-usuario-portada .boton-portada {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 25px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    cursor: pointer;
+}
+
+.seccion-perfil-usuario .perfil-usuario-portada .boton-portada i {
+    margin-right: 1rem;
+}
+
+.seccion-perfil-usuario .perfil-usuario-avatar {        /* Este es de la imagen de perfil */
+    display: flex;
+    width: 250px;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+    border: 7px solid #FFFFFF;
+    background-color: #DFE5F2;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    position: relative; /* Cambia a "relative" para que el posicionamiento sea relativo al contenedor padre */
+    top: -20px; /* Ajusta la posición vertical según tus preferencias */
+    left: calc(18% - 120px); /* Ajusta la posición horizontal según tus preferencias */
+    z-index: 1;
+    transform: translateY(10%); /* Centra verticalmente */
+}
+
+.seccion-perfil-usuario .perfil-usuario-avatar img {
+    width: 100%;
+    position: relative;
+    border-radius: 50%;
+}
+
+.seccion-perfil-usuario .perfil-usuario-avatar .boton-avatar {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border: 0;
+    background-color: #fff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+
+h4{
+    text-align: center;
+}
+.seccion-perfil-usuario .datos-personales,
+.seccion-perfil-usuario .perfil-usuario-bio {           /* Esto es del container de info de contacto */
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(131, 125, 125, 0.5);
+    background-color: #fff;
+    border-radius: 15px;
+    width: 100%;
+    flex-basis: 50%;
+    
+    
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 2px solid #ccc;
+    padding: 8px;
+}
+
+
+.seccion-perfil-usuario .titulo-descripcion {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    background-color: #fff;
+    border-radius: 15px;
+    width: 60%;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    height: auto
+    
+    
+    
+}
+.titulo-descripcion .texto strong {
+    color: rgb(5, 5, 5); /* Cambia "red" al color deseado */
+    font-weight: bold;
+}
+.titulo-descripcion .texto-desc {
+    color: rgb(40, 40, 41); /* Cambia "blue" al color deseado */
+}
+
+
+
+.seccion-perfil-usuario .perfil-usuario-titulo-Rubro{   /* Empieza el titulo y rubro  */
+    width: 70%;
+    position: relative;
+    max-width: 750px;
+}
+.seccion-perfil-usuario .titulo-Rubro {
+    
+    font-size: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    background-color:rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    width: 90%;
+    margin-bottom: 1.25rem;
+    text-align: left;
+    height: auto
+            
+}
+seccion-perfil-usuario .perfil-usuario-titulo-Rubro .titulo {
+    font-weight: bold; /* Fuente en negrita */
+    color: #000; /* Color de texto en negro */
+}
+.rubro{
+    font-size: 19px;
+    display: inline-block;
+    flex: 0 0 auto; /* El título "Rubro: Electricidad" ocupa el ancho necesario */
+    margin-right: 10px; /* Agregamos un pequeño margen derecho para separarlo del título */
+    color: rgb(40, 19, 160)
+    
+}
+.titulo {
+    display: inline-block;
+    flex: 0 0 auto; /* El título "Reparacion de transformador" ocupa el ancho necesario */
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.seccion-perfil-usuario .perfil-usuario-bio {   /* seccion del nombre de perfil  */
+    margin-bottom: 1.25rem;
+    text-align: center;
+    height: auto;
+    width:auto;
+}
+
+.seccion-perfil-usuario .lista-datos {
+    display: flex; /* Hace que los elementos se muestren en línea (costado) */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en una nueva línea si no caben */
+    justify-content: space-between; /* Distribuye los elementos de manera uniforme en el espacio disponible */
+    width: 90%; /* Ajusta el ancho para ocupar el 70% del contenedor */
+    margin: 0 auto; /* Centra horizontalmente los elementos */
+    list-style: none;
+}
+
+.seccion-perfil-usuario .lista-datos li {
+    flex-basis: 40%; /* Divide el ancho en dos columnas */
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.seccion-perfil-usuario .lista-datos li>.icono {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+
+
+.seccion-perfil-usuario .redes-sociales .boton-redes {
+    border: 0;
+    background-color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    font-size: 1.3rem;
+}
+
+
+
+.seccion-perfil-usuario .boton-redes.facebook {
+    background-color: #5955FF;
+}
+
+.seccion-perfil-usuario .boton-redes.twitter {
+    background-color: #35E1BF;
+}
+
+.seccion-perfil-usuario .boton-redes.instagram {
+    background: linear-gradient(45deg, #FF2DFD, #40A7FF);
+}
+/*LINEAS AGREGADAS POR ANDREA-----*/
+.perfil-usuario-body{
+        display: flex;
+        flex-direction: row;
+        align-items: center; /* Alinea verticalmente en el centro */
+        justify-content: space-between; /* Distribuye el espacio sobrante entre los elementos */
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan en una nueva línea si no caben */
+        margin: 100px;
+        margin-bottom:50px
+    }
+
+.ImagenesyDescripcion{
+    display: flex;
+    flex-direction: row; /* Organiza los elementos en una fila horizontal */
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+
+    flex-wrap: wrap;
+    margin: 20px; /* Ajusta los márgenes según lo necesario */
+    padding: 1.5rem 2rem;
+        box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+        background-color: #fff;
+        border-radius: 15px;
+        width: 60%;
+        margin-bottom: 1.25rem;
+        text-align: center;
+        height: auto
+}
+.imagenes {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+     margin-right: 50px/* Permite que las imágenes se envuelvan en una nueva línea si no caben */
+}
+
+.imagen {
+    width: 80%; /* Cada imagen ocupa la mitad del ancho del contenedor de imágenes */
+    padding: 5px; /* Agrega espacios entre las imágenes */
+    box-sizing: border-box;
+     /* Evita que los espacios añadan al ancho total */
+}
+.descripcion{
+ flex: 1;
+ margin-left: 100px
+
+
+
+
+}
+/*FIN LINEAS AGREGADAS POR ANDREA-----*/
+/* adactacion a dispositivos */
+
+
+@media (max-width: 750px) {
+    
+    .seccion-perfil-usuario .lista-datos {
+        width: 48%;
+        justify-content: space-between;
+        flex-basis: 50%
+    }
+
+    .seccion-perfil-usuario .perfil-usuario-portada,
+    .seccion-perfil-usuario .perfil-usuario-body {
+        width: 95%;
+    }
+
+    
+
+    .seccion-perfil-usuario .redes-sociales .boton-redes+.boton-redes {
+        margin-left: 1rem;
+        margin-top: 0;
+    }}
+
+    
+.mensaje a {
+    color: inherit;
+    margin-right: .5rem;
+    display: inline-block;
+}
+.mensaje a:hover {
+    color: #309B76;
+    transform: scale(1.4)
+}
+
+
+
+/* Estilos para el cuadro de texto de comentarios */
+h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#comments {     
+    margin-top: 10px;
+}
+
+#comments p {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+}
+
+#commentForm {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+#commentText {
+    width: 50%;
+    padding: 5px;
+    resize: none;
+    
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+
+/* ---- ----- ----- Estilos para el carrusel de imagenes ----- ----- ----- */
+.carrusel-container {
+    flex: 1;
+    margin-right: 60px;
+}
+.imagenes-recomendadas {
+	margin-bottom: 70px;
+    flex:1;
+}
+
+.imagenes-recomendadas .contenedor-principal {
+	display: flex;
+	align-items: align-left;
+	position: relative;
+}
+
+.pimagenes-recomendadas .contenedor-principal .flecha-izquierda,
+.imagenes-recomendadas .contenedor-principal .flecha-derecha {
+	position: absolute;
+	border: none;
+	background: rgba(0,0,0,0.3);
+	font-size: 40px;
+	height: 50%;
+	top: calc(50% - 25%);
+	line-height: 40px;
+	width: 50px;
+	color: #fff;
+	cursor: pointer;
+	z-index: 500;
+	transition: .2s ease all;
+}
+
+.imagenes-recomendadas .contenedor-principal .flecha-izquierda:hover,
+.imagenes-recomendadas .contenedor-principal .flecha-derecha:hover {
+	background: rgba(0,0,0, .9);
+}
+
+.imagenes-recomendadas .contenedor-principal .flecha-izquierda {
+	left: 0;
+}
+
+.imagenes-recomendadas .contenedor-principal .flecha-derecha {
+	right: 0;
+}
+
+/* ---- ----- ----- Carousel ----- ----- ----- */
+.imagenes-recomendadas .contenedor-carousel {
+	width: 100%;
+	padding: 20px 0;
+	overflow: hidden;
+	scroll-behavior: smooth;
+}
+
+.imagenes-recomendadas .contenedor-carousel .carousel {
+	display: block;
+	flex-wrap: nowrap;
+}
+
+.imagenes-recomendadas .contenedor-carousel .carousel .pelicula {
+	min-width: 20%;
+	transition: .3s ease all;
+	box-shadow: 5px 5px 10px rgba(0,0,0, .3);
+}
+
+.imagenes-recomendadas .contenedor-carousel .carousel .pelicula.hover {
+	transform: scale(1.2);
+	transform-origin: center;
+}
+
+.imagenes-recomendadas .contenedor-carousel .carousel .pelicula img {
+	width: 100%;
+	vertical-align: top;
+}
+
+/* ---- ----- ----- Media Queries ----- ----- ----- */
+@media screen and (max-width: 800px) {
+	header .logotipo {
+		margin-bottom: 10px;
+		font-size: 30px;
+	}
+
+	header .contenedor {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.imagenes-principal {
+		font-size: 14px;
+	}
+
+	.imagenes-principal .descripcion {
+		max-width: 100%;
+	}
+
+	.imagenes-recomendadas .contenedor-carousel {
+		overflow: visible;
+	}
+
+	.imagenes-recomendadas .contenedor-carousel .carousel {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	.imagenes-recomendadas .indicadores,
+	.imagenes-recomendadas .flecha-izquierda,
+	.imagenes-recomendadas .flecha-derecha {
+		display: none;
+	}
+}
+
+/* Estilos para el contenedor */
+.imagen-seleccionada-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para la imagen seleccionada */
+#imagenSeleccionada {
+    width: 450px; /* Definir el ancho de la imagen */
+    height: 350px; /* Definir el alto de la imagen */
+    border: 2px solid #333; /* Opcional: añadir un borde a la imagen */
+    border-radius: 10px; /* Opcional: añadir bordes redondeados */
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 80px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+td {
+    background-color: #fff;
+}
+
+tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+

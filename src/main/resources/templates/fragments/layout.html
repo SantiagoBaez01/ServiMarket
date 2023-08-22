@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:fragment="_head">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" th:href="@{/img/isotipo.ico}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <title>ServiceMARKET - Tu app de servicios confiables</title>
+    </head>
+    <body>
+        <header th:fragment="_header">
+            <nav class="navbar navbar-expand-lg py-4 px-5">
+                <div class="container-fluid">
+                    <a class="navbar-brand" th:href="@{/publist}"><img th:src="@{/img/logo%20horizontal.png}" width="350"/> </a>
+                    <ul class="navbar-nav reg">
+                        <li class="nav-item">
+                            <a th:href="@{/ingresar}" class="nav-link" th:if="${session.usuariosession == null}">Ingresar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{registrarse}" class="nav-link"
+                               th:if="${session.usuariosession == null}">Registrarse</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false" th:if="${session.usuariosession != null}"
+                               th:text="${session.usuariosession.name} ">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/user/perfil}">Perfil</a></li>
+                                <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+            <div class="linea-azul"></div>
+        </header>
+        <main>
+            <div th:fragment="nav-server" class="navbar-actions mb-5">
+                <div class="nav-item1">
+                    <a th:href="@{/publicacion}" sec:authorize="hasAnyRole('ROLE_PROVIDER')" class="nav-link link-custom"
+                       role="button">Publicar Servicio</a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/publicationsbyUser}" sec:authorize="hasAnyRole('ROLE_PROVIDER')"
+                       class="nav-link link-custom" role="button">Servicios Publicados
+                       </a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/solicitudbyProvider}"   sec:authorize="hasAnyRole('ROLE_PROVIDER')"class="nav-link link-custom"
+                       role="button">Servicios Solicitados
+                        <i th:each="solicitud: ${solicitud}" th:if="${solicitud.completo == false}"
+                        class="bi bi-bell-fill" style=" color: rgb(255, 210, 48); opacity: 1;" ></i></a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/califications}" sec:authorize="hasAnyRole('ROLE_PROVIDER')" class="nav-link link-custom"
+                       role="button">Listar Calificaciones</a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/admin/users}" sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-link link-custom"
+                       role="button">Listar Usuarios</a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/admin/publications}" sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-link link-custom"
+                       role="button">Listar Publicacions</a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/admin/solicitudes}" sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-link link-custom"
+                       role="button" > </i>Listar Solicitudes
+                        <i th:each="solicitud: ${solicitud}"
+                           th:if="${solicitud.completo == false}"
+                           class="bi bi-bell-fill" style=" color: rgb(255, 210, 48); opacity: 1;" ></i>
+                    </a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/admin/califications}" sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-link link-custom"
+                       role="button">Listar Calificaciones
+                        </a>
+                </div>
+                <div class="nav-item1">
+                    <a th:href="@{/publist}" sec:authorize="hasAnyRole('ROLE_USER')" class="nav-link link-custom"
+                       role="button">Visualizar Servicios</a>
+                </div>
+                <div class="nav-item1">
+                    <div>
+                        <a th:href="@{/solicitudbyUser}" sec:authorize="hasAnyRole('ROLE_USER')" class="nav-link link-custom"
+                           role="button">Listar Servicios Contratados
+                            <i th:each="solicitud: ${solicitud}"
+                               th:if="${solicitud.userClient.id ==session.usuariosession.id && solicitud.completo == true && solicitud.calificado==false}"
+                               class="bi bi-bell-fill" style=" color: rgb(255, 210, 48); opacity: 1;" ></i>
+                            <!--<i th:each="score: ${score}"
+                               th:if="${score.cliente.id ==session.usuariosession.id && score.censured == true}"
+                               class="bi bi-bell-fill" style=" color: rgb(255, 0, 0); opacity: 1;" ></i>-->
+
+                        </a>
+                         </div>
+
+
+                </div>
+
+            </div>
+
+            <!--Aquí va el contenido de la página -->
+
+
+
+
+        </main>
+        <footer th:fragment="_footer" class="container-fluid bg-dark text-white p-4">
+            <div class="container text-center">
+                <p>Desarrollado por Grupo B - Camada Julio - Egg Cooperation</p>
+            </div>
+
+        </footer>
+        <div th:fragment="_script">
+            <script th:src="@{/js/fuction.js}"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                    crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+                    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+                    crossorigin="anonymous"></script>
+        </div>
+
+    </body>
+</html>

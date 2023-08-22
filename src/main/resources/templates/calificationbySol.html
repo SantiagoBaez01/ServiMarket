@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main class="main-gris">
+  <div th:replace="fragments/layout :: nav-server"></div>
+      <div class="container">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <h1 class="navbar-brand">Calificiones por Solicitud</h1>
+            <a class="btn btn-outline-success" th:href="@{/user/perfil}" type="button">Volver</a>
+          </div>
+        </nav>
+
+
+              <div class="container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>CLIENTE</th>
+                      <th>PROVEEDOR</th>
+                      <th>SERVICIO</th>
+                      <th>PUNTAJE</th>
+                      <th>COMENTARIO</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th th:each="score : ${score}" th:if="${session.usuariosession.id == score.provider.id}"></th>
+                      <td th:text="${score.id}"></td>
+                      <td th:text="${score.cliente.id}"></td>
+                      <td th:text="${score.provider.id}"></td>
+                      <td th:text="${score.solicitud.id}"></td>
+                      <td th:text="${score.puntaje}"></td>
+                      <td th:text="${score.comentario}"></td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+              <div class="container">
+                <h2 class="mb-0">Puntuación</h2>
+                <div class="puntuacion">
+                  <div class="texto-puntuacion" th:text = ${score.puntaje}>4.7</div>
+                  <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
+                       aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-success" style="width: 80%"></div>
+                  </div>
+
+                </div>
+
+              </div>
+
+      </div>
+    </main>
+<footer th:replace="fragments/layout :: _footer"></footer>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>
+

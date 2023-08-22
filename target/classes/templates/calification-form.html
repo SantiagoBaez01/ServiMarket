@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main class="main-gris">
+    <div th:replace="fragments/layout :: nav-server"></div>
+            <div class="container">
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error!</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <form class="form" th:action="@{/calification/{solid} (solid=${solid})}" method="POST" th:object="${score}" >
+                    <h1>Calificación</h1>
+                    <label class="form-label">Comentario:</label>
+
+                    <textarea class="form-control mb-4" type="text"
+                           id="comentario"
+                           name="comentario"
+                           th:field="*{comentario}"
+                            required></textarea>
+                    <div class="rating">
+                        <input type="radio" id="star10" name="puntaje" value="10" th:checked="${score.puntaje == 10}" />
+                        <label for="star10"></label>
+                        <input type="radio" id="star9" name="puntaje" value="9" th:checked="${score.puntaje == 9}" />
+                        <label for="star9"></label>
+                        <input type="radio" id="star8" name="puntaje" value="8" th:checked="${score.puntaje == 8}" />
+                        <label for="star8"></label>
+                        <input type="radio" id="star7" name="puntaje" value="7" th:checked="${score.puntaje == 7}" />
+                        <label for="star7"></label>
+                        <input type="radio" id="star6" name="puntaje" value="6" th:checked="${score.puntaje == 6}" />
+                        <label for="star6"></label>
+                        <input type="radio" id="star5" name="puntaje" value="5" th:checked="${score.puntaje == 5}" />
+                        <label for="star5"></label>
+                        <input type="radio" id="star4" name="puntaje" value="4" th:checked="${score.puntaje == 4}" />
+                        <label for="star4"></label>
+                        <input type="radio" id="star3" name="puntaje" value="3" th:checked="${score.puntaje == 3}" />
+                        <label for="star3"></label>
+                        <input type="radio" id="star2" name="puntaje" value="2" th:checked="${score.puntaje == 2}" />
+                        <label for="star2"></label>
+                        <input type="radio" id="star1" name="puntaje" value="1" th:checked="${score.puntaje == 1}" />
+                        <label for="star1"></label>
+                    </div>
+
+                    <button class="w-100 btn btn-success btn-lg mb-4" type="submit">Calificar</button>
+                </form>
+
+                <div id="publicacionMostrada"></div>
+
+
+
+            </div>
+        </main>
+<footer th:replace="fragments/layout :: _footer"></footer>
+        <script src="../static/js/Formulario_Servicios.js"></script>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

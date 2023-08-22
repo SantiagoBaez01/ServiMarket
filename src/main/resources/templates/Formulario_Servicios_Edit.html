@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main class="main-gris">
+    <div th:replace="fragments/layout :: nav-server"></div>
+    <div class="container">
+        <div class="d-flex fles-row justify-content-between align-items-center">
+            <h1>Completa la información de tu servicios</h1>
+            <a class="btn btn-outline-success" th:href="@{/user/perfil}" type="button">Volver</a>
+        </div>
+
+            <form th:object="${publication}" th:action="@{/editPublication/{pId} (pId = ${publication.id})}" method="post" enctype="multipart/form-data">   <!--Aca tiene que ir la ruta donde esta el archivo Vista_formulario_Servicios.htm-->
+
+            <label class="form-label">Título:</label>
+            <input class="form-control mb-4" type="text"
+                   name="title"
+                   th:value="${publication.title}" required>
+            <label class="form-label">Descripción corta:</label>
+            <input class="form-control mb-4" type="text"
+                   name="description"
+                   th:value="${publication.description}" required>
+            <label class="form-label">Descripción:</label>
+                <textarea class="form-control mb-4" type="text"
+                       name="description2"
+                          id="description2"
+                       th:value="${publication.description2}"
+                       rows="4" required></textarea>
+
+
+                <label class="form-label" for="rubro">Selecciona un rubro:</label>
+                <select class="form-control me-2" id="rubro" name="rubro" >
+                    <option value="">Seleccione un rubro</option>
+                    <option th:each="rubro : ${T(com.grupob.ServiMarket.enums.Rubro).values()}"
+                            th:value="${rubro}" th:text="${rubro}"></option>
+                </select>
+
+                <label class="form-label" for="archivo">Cargue sus imagenes: </label>
+
+                <input class="form-control mb-4" type="file" id="archivo" name="archivos" accept="image/*" multiple required onchange="mostrarVistaPrevia(this);">
+
+
+                <div id="imagenes-previas"></div>
+                <br>
+            <button class="w-100 btn btn-success btn-lg mb-4" type="submit" >Publicar</button>
+
+            </form>
+    </div>
+</main>
+
+    <!-- Área donde se mostrarán los datos de la publicación -->
+<footer th:replace="fragments/layout :: _footer"></footer>
+
+
+        <script src=".@{static/js/Formulario_Servicios.js}"></script>
+        <script th:inline="javascript">
+    function mostrarVistaPrevia(input) {
+        var imagenPreviaContenedor = document.getElementById('imagenes-previas');
+        imagenPreviaContenedor.innerHTML = '';
+
+        if (input.files && input.files.length > 0) {
+            for (var i = 0; i < input.files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = (function (file) {
+                    return function (e) {
+                        var imagenPrevia = document.createElement('img');
+                        imagenPrevia.src = e.target.result;
+                        imagenPrevia.style.maxWidth = '100%';
+                        imagenPrevia.style.maxHeight = '200px';
+                        imagenPreviaContenedor.appendChild(imagenPrevia);
+                    };
+                })(input.files[i]);
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    }
+</script>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main class="main-gris">
+    <div th:replace="fragments/layout :: nav-server"></div>
+    <div class="container">
+        <div class="d-flex fles-row justify-content-between align-items-center">
+            <h1>Datos de la publicación</h1>
+            <a class="btn btn-outline-success" th:href="@{/user/perfil}" type="button">Volver</a>
+        </div>
+        <p>ID: <span th:text="${pub.id}"></span></p>
+        <p>Título: <span th:text="${pub.title}"></span></p>
+        <p>Rubro: <span th:text="${pub.rubro}"></span></p>
+        <p>Descripción: <span th:text="${pub.description}"></span></p>
+        <img id="fotos" th:src="${pub.urlImagen}" alt="Fotos de la publicación">
+        <script src="../static/js/Vista_Formulario_Servicios.js"></script>
+
+        <a class="btn btn-primary" sec:authorize="hasAnyRole('ROLE_ADMIN')"
+           th:href="@{/publication/{pubId}/delete(pubId=${pub.id})}">Delete</a>
+        <a class="btn btn-primary" th:href="@{/question/{pubId}/new(pubId=${pub.id})}">PREGUNTAR</a>
+    </div>
+</main>
+<footer th:replace="fragments/layout :: _footer"></footer>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

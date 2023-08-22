@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="fragments/layout :: _head"></head>
+
+
+    <body>
+        <header th:replace="fragments/layout :: _header"></header>
+
+        <main>
+            <div class="container">
+                <div class="jumbot">
+                    <h1><strong>Contrata solo personal de confianza</strong> </h1>
+                    <p>Localiza fácilmente y en tu zona, el profesional que estás buscando y contrátalo de acuerdo a sus
+                        calificaciones.</p>
+                </div>
+                <form class="d-flex mt-3" role="search">
+                    <input th:action="@{/publist/search}" class="form-control me-2"
+                           type="search"
+                           placeholder="Ingrese un rubro a buscar"
+                           name="query"
+                           aria-label="Search">
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </form>
+
+
+                <!-- En esta parte de abajo agregue los contenedores section que aparecen abajo de la pagina -->
+
+
+                <div class="publicaciones-container">
+
+
+                    <div th:each="publication:${publication}" class="publicacion">
+                        <div class="contenido-publicacion">
+                            <img src="img/plomero.jpg" alt="Imagen de la publicación 3" class="imagen-publicacion">
+                            <h2 class="titulo-publicacion" th:text="${publication.title}"></h2>
+                            <p class="descripcion-publicacion"  th:text="${publication.description}"> </p>
+
+
+                        </div>
+
+                        <div>
+                            <a class="btn btn-primary" th:href="@{/publication/{pubId}(pubId=${publication.id})}">View</a>
+                            <a class="btn btn-primary" sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_PROVIDER')" th:href="@{/editPublication/{pId}(pId=${publication.id})}">Edit</a>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!--Aca finaliza ese codigo de los contenedores -->
+
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="fragments/layout :: _footer"></footer>
+        <div th:replace="fragments/layout :: _script"></div>
+    </body>
+
+</html>

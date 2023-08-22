@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+  }
+  
+  .error-container {
+    text-align: center;
+  }
+  
+  .error-code {
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    font-size: 24px;
+  }
+  
+  .error-404 {
+    color: #e74c3c;
+  }
+  
+  .error-500 {
+    color: #f39c12;
+  }
+  
+  .error-403 {
+    color: #3498db;
+  }
+  
+  .error-400 {
+    color: #2ecc71;
+  }
+  
+  .error-503 {
+    color: #9b59b6;
+  }
+  
+  .error-429 {
+    color: #e67e22;
+  }
+  .boton{
+    display: inline-block;
+    margin-top: 15px;
+    background: #2ecc71;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+<div class="error-container">
+  <div class="error-code error-404">404</div>
+  <div class="error-message">Página no encontrada</div>
+  <a href="index.html" class="boton">
+    Volver
+  </a>
+</div>
+</body>
+</html>

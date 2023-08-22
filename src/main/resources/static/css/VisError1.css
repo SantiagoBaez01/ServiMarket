@@ -1,0 +1,91 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.error-container {
+  text-align: center;
+}
+
+.error-code {
+  font-size: 100px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  font-size: 24px;
+}
+
+.error-bg {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* Estilos específicos para cada error */
+.error-404 .error-bg {
+  background-image: url('hamster.jpg');
+}
+
+.error-500 .error-bg {
+  background-image: url('500.jpg');
+}
+
+.error-403 .error-bg {
+  background-image: url('403.jpg');
+}
+
+.error-400 .error-bg {
+  background-image: url('400.jpg');
+}
+
+.error-503 .error-bg {
+  background-image: url('503.jpg');
+}
+
+.error-429 .error-bg {
+  background-image: url('429.jpg');
+}
+button{
+  position: fixed;
+  border: 0;
+  background-image: linear-gradient(
+      150deg,
+      #101feb,
+      #09f,
+      #2ae97a 
+  );
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  font-size: 18px;
+  padding: 4px;
+  cursor: pointer;
+  transition: .3s;
+}
+button span{
+  background-color: #111;
+  padding: 16px 24px;
+  border-radius: 6px;
+  transition: .3s;
+}
+button:hover span{
+  background: none;
+}
+button:active{
+  transform: scale(0.9);
+
+}

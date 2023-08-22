@@ -1,0 +1,125 @@
+body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+
+}
+.logo{
+    height: 60px;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.admin-table {
+    border-collapse: collapse;
+    width: 80%; /* Ajusta el ancho de la tabla según tus necesidades */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Agrega sombra a la tabla */
+}
+
+.admin-table th, .admin-table td {
+    border: 1px solid #ccc; /* Agrega bordes a las celdas de la tabla */
+    padding: 8px;
+    text-align: center;
+}
+button{
+    position: fixed;
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    right: 20px; /* Ajusta la distancia desde la parte derecha */
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        #101feb,
+        #09f,
+        #2ae97a
+    );
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    padding: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+button span{
+    background-color: #111;
+    padding: 16px 24px;
+    border-radius: 6px;
+    transition: .3s;
+}
+button:hover span{
+    background: none;
+}
+button:active{
+    transform: scale(0.9);
+
+}
+h1 {
+    margin-bottom: -50px;
+    color:black;
+    text-align: center;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 80px;
+
+
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+td {
+    background-color: #fff;
+}
+
+tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+.btn-editar, .btn-eliminar{
+    padding: 6px 12px;
+    margin-right: 6px;
+    cursor: pointer;
+
+}
+
+.btn-editar {
+    background-color: #4CAF50;
+    color: #fff;
+    right: -20px;
+    border-radius: 8px;
+    border: 1px solid #050505;
+}
+
+.btn-eliminar {
+    background-color: #f44336;
+    color: #fff;
+    right: -20px;
+    border-radius: 8px;
+    border: 1px solid #050505;
+
+}
+
+.navbar {
+    height: 50px; /* Altura de la franja negra */
+    background-color: #010844; /* Color de fondo de la franja negra (negro en este caso) */
+    color: #fff; /* Color del texto en la franja negra (opcional) */
+    text-align: center;
+    min-height: 20%;
+    padding-top: 10px; /* Altura de la franja negra */
+}

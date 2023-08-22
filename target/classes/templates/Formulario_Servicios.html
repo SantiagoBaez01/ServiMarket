@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main class="main-gris">
+    <div th:replace="fragments/layout :: nav-server"></div>
+            <div class="container">
+                <div class="d-flex fles-row justify-content-between align-items-center">
+                    <h1>Completa la información de tu servicios</h1>
+                    <a class="btn btn-outline-success" th:href="@{/user/perfil}" type="button">Volver</a>
+                </div>
+                <form class="form" th:object="${publicacion}" th:action="@{/newPublication}" method="post" enctype="multipart/form-data">   <!--Aca tiene que ir la ruta donde esta el archivo Vista_formulario_Servicios.htm-->
+                <!-- Campos del formulario -->
+                    <label class="form-label">Título:</label>
+                    <input class="form-control mb-4" type="text"
+                           th:field="*{title}" required>
+                    <label class="form-label">Descripción corta:</label>
+                    <textarea class="form-control mb-4" th:field="*{description}"
+                              rows="1" required></textarea>
+                    <label class="form-label">Descripción:</label>
+                    <textarea class="form-control mb-4"
+                              id="description2"
+                              th:field="*{description2}"
+                              rows="4" required></textarea>
+                    <label class="form-label" for="rubro">Selecciona un rubro:</label>
+                    <select class="form-control me-2" id="rubro" name="rubro" >
+                        <option value="">Seleccione un rubro</option>
+                        <option th:each="rubro : ${T(com.grupob.ServiMarket.enums.Rubro).values()}"
+                                th:value="${rubro}" th:text="${rubro}"></option>
+                    </select>
+
+                    <label class="form-label" for="archivo">Cargue sus imagenes: </label>
+                    <input class="form-control mb-4" type="file" id="archivo" name="archivos" accept="image/*" multiple required onchange="mostrarVistaPrevia(this);">
+
+                        <div id="imagenes-previas"></div>
+
+                    <button class="w-100 btn btn-success btn-lg mb-4" type="submit">Publicar</button>
+                </form>
+
+
+                </div>
+            </main>
+
+
+
+            <footer th:replace="/fragments/footer :: _footer"></footer>
+
+
+        <script src="../static/js/Formulario_Servicios.js"></script>
+        <script src="js/fuction.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+                crossorigin="anonymous"></script>
+        <script th:inline="javascript">
+    function mostrarVistaPrevia(input) {
+        var imagenPreviaContenedor = document.getElementById('imagenes-previas');
+        imagenPreviaContenedor.innerHTML = '';
+
+        if (input.files && input.files.length > 0) {
+            for (var i = 0; i < input.files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = (function (file) {
+                    return function (e) {
+                        var imagenPrevia = document.createElement('img');
+                        imagenPrevia.src = e.target.result;
+                        imagenPrevia.style.maxWidth = '100%';
+                        imagenPrevia.style.maxHeight = '200px';
+                        imagenPreviaContenedor.appendChild(imagenPrevia);
+                    };
+                })(input.files[i]);
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    }
+</script>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

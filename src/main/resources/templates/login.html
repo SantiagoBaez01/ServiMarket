@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main>
+    <div class="d-flex flex-row-reverse a1">
+        <div class="col-md-4 panel2" id="panel">
+            <div class="container p-5">
+                <div th:if="${error != null}" class="alert alert-danger" role="alert">
+                    <p th:utext="${error}"></p>
+                </div>
+                <div th:if="${exito != null}" class="alert alert-success" role="alert">
+                    <p th:utext="${exito}"></p>
+                </div>
+                <h1>Logéate!</h1>
+
+                <form class="form" th:action="@{/logincheck}" method="POST">
+
+                    <input type="email" class="form-control mb-4"
+                           placeholder="CORREO ELECTRÓNICO"
+                           id="email"
+                           name="email"/>
+                    <input type="password" class="form-control mb-4"
+                           placeholder="CONTRASEÑA"
+                           id="password"
+                           name="password"/>
+
+
+                    <button class="w-100 btn btn-primary btn-lg" type="submit" id="submitButton">ENTRAR</button>
+
+                    <div class="d-flex flex-colum justify-content-center mt-5">
+                        <p>¿Aún no estás registrado? </p>
+                        <strong>
+                            <a class="nav-link" th:href="@{/registro}"> Regístrate!</a>
+                        </strong>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer th:replace="fragments/layout :: _footer"></footer>
+
+
+<script> // Es para que agregue la funcion de en caso de que si no completaste algun campo que te muestre una alerta avisandote que campo te falto
+            const submitButton = document.getElementById('submitButton');
+            const emailInput = document.getElementById('email');
+            const contrasenaInput = document.getElementById('contrasena');
+
+            function mostrarAlerta(mensaje) {
+                alert(mensaje);
+            }
+
+            function validarCampos() {
+                if (!emailInput.value.trim()) {
+                    mostrarAlerta('Por favor, ingresa tu email.');
+                    return false;
+                }
+
+                if (!contrasenaInput.value.trim()) {
+                    mostrarAlerta('Por favor, ingresa tu contraseña.');
+                    return false;
+                }
+
+                return true;
+            }
+
+            submitButton.addEventListener('click', function () {
+                const camposValidos = validarCampos();
+
+                if (camposValidos) {
+                    // Es para que me muestre una alerta si se inicio bien sesion
+                    alert('Inicio de sesión exitoso.');
+                }
+            });
+</script>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

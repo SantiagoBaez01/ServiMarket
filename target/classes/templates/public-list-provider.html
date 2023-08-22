@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main class="main-gris">
+  <div th:replace="fragments/layout :: nav-server"></div>
+      <div class="container">
+        <div class="d-flex fles-row justify-content-between align-items-center">
+          <h1>Lista de Servicios Publicados</h1>
+          <a class="btn btn-outline-success" th:href="@{/user/perfil}" type="button">Volver</a>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>TITULO</th>
+              <th>DESCRIPCION</th>
+              <th>USUARIO</th>
+              <th>IMAGEN</th>
+              <th>RUBRO</th>
+              <th>ESTADO</th>
+              <th>VER PUBLICACION</th>
+              <th>ELIMINAR</th>
+
+              </tr>
+            </thead>
+            <tbody th:each="publication : ${publication}" th:if="${session.usuariosession.id == publication.provider.id}">
+              <tr>
+
+                  <th scope="row" th:text="${publication.id}"></th>
+                  <td th:text="${publication.title}"></td>
+                  <td th:text="${publication.description}"></td>
+
+                  <td th:text=" ${publication.provider.id}"></td>
+                  <td><img th:if="${publication.image != null && publication.image.size() > 0}" th:src="@{'/imagen/' + ${publication.image[0].id}}"  alt="Imagen publicacion" class="imagen-publicacion" width="100" height="100"></td>
+
+                  <td th:text="${publication.rubro}"></td>
+                  <td th:if="${publication.publicated}">ALTA</td>
+                  <td th:unless="${publication.publicated}"> BAJA</td>
+
+                  <td><a th:href= "@{/publication/{pId} (pId=${publication.id})}" class="btn btn-outline-info"> VER </a> </td>
+                  <td><a th:href= "@{/publicationdel/{pubId} (pubId=${publication.id})}" class="btn btn-outline-danger"> ELIMINAR </a> </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+      </div>
+    </main>
+<footer th:replace="fragments/layout :: _footer"></footer>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+
+  <title>Users</title>
+
+</head>
+
+<body >
+<section layout:fragment="body" class="py-6">
+
+  <div class="container m-5" >
+
+    <table class="table table-secondary">
+      <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    /* Estilo para filas anchas */
+    tr {
+      height: 50px; /* Puedes ajustar este valor según tus necesidades */
+    }
+  </style>
+      <thead>
+      <tr>
+        <th scope="col">USER ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">CONTACT</th>
+        <th scope="col">ROLE</th>
+        <th scope="col">CHANGE ROLE</th>
+        <th scope="col">DELETE</th>
+
+
+      </tr>
+      </thead>
+      <tbody th:each="user : ${user}">
+      <tr>
+        <th scope="row" th:text="${user.id}"></th>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.contact}"></td>
+        <!-- <td> <img th:if="${user.image != null}" class="logo" th:src="@{/image/profile/__${user.id}__}"> </td> -->
+        <td th:text="${user.role}"></td>
+        <td><a th:href= "@{/admin/editRole/{id} (id=${user.id})}"><i class="far fa-edit"></i> CHANGE </a></td>
+        <td><a th:href= "@{/admin/delete/{id} (id=${user.id})}"><i class="fas fa-exclamation-circle"></i> DELETE </a> </td>
+      </tr>
+
+      </tbody>
+    </table>
+
+
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <a th:href="@{/admin/dashboard}" class="btn btn-primary my-2">BACK</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+</section>
+</body>
+
+</html>

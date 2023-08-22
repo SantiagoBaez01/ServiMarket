@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/layout :: _head"></head>
+
+
+<body>
+<header th:replace="fragments/layout :: _header"></header>
+
+<main>
+
+    <div class="d-flex flex-row-reverse a1 ">
+        <div class="col-md-4 panel1">
+            <div class="container p-5" id="panel">
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error!</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                    <div class="card-body">
+                        <h5 class="card-title">Exito!</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+                <h1>Regístrate!</h1>
+                <form class="formulario" th:action="@{/newuser}" method="POST" th:object="${userEntity}" enctype="multipart/form-data" >
+                    <input type="text" class="form-control mb-4"
+                           placeholder="NOMBRE"
+                           id="name"
+                           th:field="*{name}" />
+                    <input type="text" class="form-control mb-4"
+                           placeholder="APELLIDO"
+                           id="lastname"
+                           th:field="*{lastName}" />
+
+                    <input type="text" class="form-control mb-4"
+                           placeholder="DIRECCIÓN"
+                           id="address"
+                           th:field="*{address}" />
+
+                    <input type="text" class="form-control mb-4"
+                           placeholder="TELEFONO"
+                           id="contact"
+                           th:field="*{contact}" />
+
+                    <input type="email" class="form-control mb-4"
+                           placeholder="CORREO ELECTRÓNICO"
+                           id="email"
+                           th:field="*{email}" />
+
+
+                    <input type="password" class="form-control mb-4"
+                           placeholder="CONTRASEÑA"
+                           id="password"
+                           th:field="*{password}" />
+
+                    <input type="password" class="form-control mb-4"
+                           placeholder="VUELVA A ESCRIBIR SU CONTRASEÑA"
+                           id="confirmarContrasena"
+                           name="password2"
+                           th:value="${password2}"
+                    />
+
+
+
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" required>
+                        <label class="form-check-label" for="invalidCheck3"
+                        >
+                            He leído y acepto los <!-- Botón para abrir el modal -->
+                            <a href="#" data-toggle="modal" data-target="#terminosModal">Términos y
+                                Condiciones</a>
+                            <!--Inicia el Modal -->
+                            <div class="modal fade" id="terminosModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="terminosModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="terminosModalLabel" style="color: #333; font-weight: bold; text-decoration: underline;">Términos y Condiciones</h5>                                            <button type="button" class="close" data-dismiss="modal"
+                                                                                                                                                                                                                                               aria-label="Cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body"style="color: #333;">
+
+                                            <!-- Contenido del modal -->
+                                            <p>El USUARIO y/o VISITANTE se obliga a usar el Sitio de conformidad con estos Términos y Condiciones, en forma diligente, correcta y lícita, y conforme con la moral y las buenas costumbres. El USUARIO y/o VISITANTE responderá por los daños y perjuicios de toda naturaleza que LA EMPRESA pueda sufrir, directa o indirectamente, como consecuencia del incumplimiento de cualquiera de las obligaciones derivadas de estos Términos y Condiciones. LA EMPRESA podrá suspender transitoriamente o finalizar la publicación de la página sin aviso previo y en cualquier momento, sin que ello genere derecho a indemnización alguna en favor del USUARIO y/o VISITANTE. El USUARIO y/o VISITANTE reconoce y acepta que el uso de esta página es bajo su propio y exclusivo riesgo. El USUARIO y/o VISITANTE reconoce y acepta que ni LA EMPRESA, ni los directores, empleados o representantes de cualquiera de ellos, es responsable por daños que surjan de o resulten del uso de esta página, incluyendo cualquier error, omisión, interrupción, falla, eliminación de archivos o correos electrónicos (e-mails), defectos, virus, y/o demoras en la operación o transmisión y/o de cualquier otro tipo. La página puede ser utilizada por el USUARIO y/o VISITANTE en forma totalmente libre y gratuita.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cerrar</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+
+
+
+
+                    <label class="form-label" for="role">Seleccione su perfil:</label>
+                    <select class="form-control mb-4" id="role" th:field="*{role}" >
+                        <option th:value="USER" th:text="Usuario"></option>
+                        <option th:value="PROVIDER" th:text="Proveedor"></option>
+                    </select>
+                    <label class="form-label" for="archivo">Imagen:</label>
+                    <input class="form-control mb-4" type="file" id="archivo" name="archivo" accept="image/*" onchange="mostrarVistaPrevia(this);">
+                    <img id="imagen-previa" src="#" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px; display: none;">
+                    <button class="w-100 btn btn-success btn-lg mb-4" type="submit" id="submitButton">ENVIAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/layout :: _footer"></footer>
+
+
+
+<script th:inline="javascript">
+            function mostrarVistaPrevia(input) {
+                var imagenPrevia = document.getElementById('imagen-previa');
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        imagenPrevia.src = e.target.result;
+                        imagenPrevia.style.display = 'block';
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    imagenPrevia.src = '#';
+                    imagenPrevia.style.display = 'none';
+                }
+            }
+        </script>
+<div th:replace="fragments/layout :: _script"></div>
+</body>
+
+</html>
